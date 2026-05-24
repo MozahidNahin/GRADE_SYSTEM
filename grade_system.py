@@ -7,11 +7,11 @@ class GradeSystem:
 
     def input_name(self):
         while True:
-            name = input("Enter Your Name: ").strip()
+            name = input("Enter student name: ").strip()
             if name == "":
-                print("Must Enter Your Name First!\n")
+                print("Please enter your name first!\n")
             elif not name.replace(" ", "").isalpha():
-                print("Name Must Be In Alphabets Only!\n")
+                print("Name must contain alphabets only!\n")
             else:
                 self.name = name
                 break
@@ -57,11 +57,41 @@ class GradeSystem:
         print(f"\nAverage : {average:.2f}")
         print(f"GPA     : {final_gpa:.2f} / 5.0")
 
+    def save_to_file(self):
+        filename = "students.txt"
+
+        with open(filename, "a") as f:
+            f.write(f"Student: {self.name}\n")
+
+            total = 0
+            gpa_total = 0
+
+            for i in range(len(self.subjects)):
+                score = self.scores[i]
+                grade, gpa = self.get_grade(score)
+                status = "Pass" if score >= 50 else "Fail"
+
+                f.write(f"  {self.subjects[i]}: {score} | {grade} | {status}\n")
+
+                total += score
+                gpa_total += gpa
+
+            average = total / len(self.subjects)
+            final_gpa = gpa_total / len(self.subjects)
+
+            f.write(f"  Average : {average:.2f}\n")
+            f.write(f"  GPA     : {final_gpa:.2f} / 5.0\n")
+            f.write("-" * 30 + "\n")
+
+        print(f"\nSaved to {filename}")
+
     def run(self):
         print("=== Grade Calculator ===\n")
         self.input_name()
         self.input_scores()
         self.show_results()
+
+        self.save_to_file()
 
 
 calculator = GradeSystem()
