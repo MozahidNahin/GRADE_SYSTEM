@@ -3,9 +3,21 @@ class GradeSystem:
     def __init__(self):
         self.subjects = ["Math", "English", "Science", "Commerce", "Arts"]
         self.scores = []
+        self.name = ""
+
+    def input_name(self):
+        while True:
+            name = input("Enter Your Name: ").strip()
+            if name == "":
+                print("Must Enter Your Name First!\n")
+            elif not name.replace(" ", "").isalpha():
+                print("Name Must Be In Alphabets Only!\n")
+            else:
+                self.name = name
+                break
 
     def input_scores(self):
-        print("=== Grade Calculator ===\n")
+        print()
         for subject in self.subjects:
             score = float(input(f"Enter {subject} score: "))
             self.scores.append(score)
@@ -25,7 +37,7 @@ class GradeSystem:
             return "F", 0.0
 
     def show_results(self):
-        print("\n--- Results ---")
+        print(f"\n=== Results for {self.name} ===")
         total = 0
         gpa_total = 0
 
@@ -46,6 +58,8 @@ class GradeSystem:
         print(f"GPA     : {final_gpa:.2f} / 5.0")
 
     def run(self):
+        print("=== Grade Calculator ===\n")
+        self.input_name()
         self.input_scores()
         self.show_results()
 
