@@ -1,18 +1,9 @@
 Student: Nahin
-  Math: 70.0 | C | Pass
-  English: 80.0 | B | Pass
-  Science: 90.0 | A | Pass
-  Commerce: 60.0 | D | Pass
-  Arts: 70.0 | C | Pass
-  Average : 74.00
-  GPA     : 2.40 / 5.0
-------------------------------
-Student: Amir
-  Math: 80.0 | B | Pass
+  Math: 60.0 | D | Pass
   English: 60.0 | D | Pass
-  Science: 90.0 | A | Pass
-  Commerce: 70.0 | C | Pass
+  Science: 60.0 | D | Pass
+  Commerce: 60.0 | D | Pass
   Arts: 60.0 | D | Pass
-  Average : 72.00
-  GPA     : 2.20 / 5.0
-------------------------------
+  Average : 60.00
+  GPA     : 1.00 / 5.0
+-------------------------------

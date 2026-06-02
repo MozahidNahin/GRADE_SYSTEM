@@ -5,6 +5,7 @@ class GradeSystem:
         self.scores = []
         self.name = ""
 
+
     def input_name(self):
         while True:
             name = input("Enter student name: ").strip()
@@ -16,11 +17,13 @@ class GradeSystem:
                 self.name = name
                 break
 
+
     def input_scores(self):
         print()
         for subject in self.subjects:
             score = float(input(f"Enter {subject} score: "))
             self.scores.append(score)
+
 
     def get_grade(self, score):
         if score >= 91:
@@ -36,6 +39,7 @@ class GradeSystem:
         else:
             return "F", 0.0
 
+
     def show_results(self):
         print(f"\n=== Results for {self.name} ===")
         total = 0
@@ -44,7 +48,10 @@ class GradeSystem:
         for i in range(len(self.subjects)):
             score = self.scores[i]
             grade, gpa = self.get_grade(score)
-            status = "Pass" if score >= 50 else "Fail"
+            if score >= 50:
+                status = "Pass"
+            else:
+                status = "Fail"    
 
             print(f"{self.subjects[i]}: {score} | {grade} | {status}")
 
@@ -57,19 +64,23 @@ class GradeSystem:
         print(f"\nAverage : {average:.2f}")
         print(f"GPA     : {final_gpa:.2f} / 5.0")
 
+
     def save_to_file(self):
         filename = "students.txt"
 
         with open(filename, "a") as f:
             f.write(f"Student: {self.name}\n")
-
+        
             total = 0
             gpa_total = 0
 
             for i in range(len(self.subjects)):
                 score = self.scores[i]
                 grade, gpa = self.get_grade(score)
-                status = "Pass" if score >= 50 else "Fail"
+                if score >= 50:
+                    status = "Pass"
+                else:
+                    status = "Fail"
 
                 f.write(f"  {self.subjects[i]}: {score} | {grade} | {status}\n")
 
@@ -81,16 +92,16 @@ class GradeSystem:
 
             f.write(f"  Average : {average:.2f}\n")
             f.write(f"  GPA     : {final_gpa:.2f} / 5.0\n")
-            f.write("-" * 30 + "\n")
+            f.write("-------------------------------\n")
 
         print(f"\nSaved to {filename}")
+
 
     def run(self):
         print("=== Grade Calculator ===\n")
         self.input_name()
         self.input_scores()
         self.show_results()
-
         self.save_to_file()
 
 
